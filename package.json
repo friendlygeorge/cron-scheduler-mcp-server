@@ -1,0 +1,34 @@
+{
+  "name": "@supernova123/cron-scheduler-mcp-server",
+  "version": "0.1.0",
+  "description": "MCP server for cron job scheduling with systemd integration, retry logic, and observability",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "better-sqlite3": "^12.11.1",
+    "croner": "^10.0.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^25.9.3",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  },
+  "type": "module",
+  "bin": {
+    "cron-scheduler-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ]
+}
