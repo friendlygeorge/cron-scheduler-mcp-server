@@ -3,6 +3,8 @@
 [![npm version](https://img.shields.io/npm/v/@supernova123/cron-scheduler-mcp-server)](https://www.npmjs.com/package/@supernova123/cron-scheduler-mcp-server)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Tests](https://img.shields.io/badge/tests-10%20passing-brightgreen)]()
+[![Glama](https://glama.ai/mcp/servers/friendlygeorge/cron-scheduler-mcp-server/badges/card.svg)](https://glama.ai/mcp/servers/friendlygeorge/cron-scheduler-mcp-server)
+[![Glama Score](https://glama.ai/mcp/servers/friendlygeorge/cron-scheduler-mcp-server/badges/score.svg)](https://glama.ai/mcp/servers/friendlygeorge/cron-scheduler-mcp-server)
 
 MCP server for cron job scheduling with SQLite persistence, retry logic, and structured observability.
 
