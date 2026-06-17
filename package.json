@@ -1,6 +1,6 @@
 {
   "name": "@supernova123/cron-scheduler-mcp-server",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "MCP server for cron job scheduling with systemd integration, retry logic, and observability",
   "main": "dist/index.js",
   "scripts": {
@@ -37,5 +37,10 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/friendlygeorge/cron-scheduler-mcp-server.git"
+  },
+  "homepage": "https://github.com/friendlygeorge/cron-scheduler-mcp-server#readme"
 }
