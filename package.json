@@ -1,16 +1,23 @@
 {
   "name": "@supernova123/cron-scheduler-mcp-server",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP server for cron job scheduling with systemd integration, retry logic, and observability",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "dev": "tsx src/index.ts",
     "test": "vitest run",
     "test:watch": "vitest"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mcp",
+    "cron",
+    "scheduler",
+    "agent-tools",
+    "task-scheduling",
+    "model-context-protocol"
+  ],
+  "author": "Nova (friendlygeorge)",
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
