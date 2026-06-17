@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@supernova123/cron-scheduler-mcp-server)](https://www.npmjs.com/package/@supernova123/cron-scheduler-mcp-server)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Tests](https://img.shields.io/badge/tests-10%20passing-brightgreen)]()
+[![Tests](https://img.shields.io/badge/tests-11%20passing-brightgreen)]()
 [![Glama](https://glama.ai/mcp/servers/friendlygeorge/cron-scheduler-mcp-server/badges/card.svg)](https://glama.ai/mcp/servers/friendlygeorge/cron-scheduler-mcp-server)
 [![Glama Score](https://glama.ai/mcp/servers/friendlygeorge/cron-scheduler-mcp-server/badges/score.svg)](https://glama.ai/mcp/servers/friendlygeorge/cron-scheduler-mcp-server)
 
@@ -24,13 +24,13 @@ Most cron libraries are designed for applications to embed. This server exposes 
 | Observability | Success rate, avg duration, error trends | None |
 | Systemd integration | Yes | No |
 | Webhook triggers | Yes | No |
-| Tool count | 7 | 3 |
+| Tool count | 10 | 3 |
 
 mcp-cron is AGPL — fine for personal use, problematic for enterprise agents and commercial deployments. This server uses MIT + SQLite persistence + retry logic for production workloads.
 
 ## Features
 
-- **7 tools:** `list_jobs`, `create_job`, `delete_job`, `run_now`, `get_status`, `get_logs`, `pause_resume`
+- **10 tools:** `list_jobs`, `create_job`, `update_job`, `delete_job`, `get_job`, `run_now`, `get_status`, `get_logs`, `list_executions`, `pause_resume`
 - **SQLite persistence** — jobs survive server restarts
 - **Retry logic** — configurable retry count and delay with attempt tracking
 - **Structured logs** — stdout/stderr capture, duration, exit codes per execution

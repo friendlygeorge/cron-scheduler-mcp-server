@@ -97,4 +97,22 @@ describe("JobStorage", () => {
     expect(stats.totalRuns).toBe(3);
     expect(stats.successRate).toBeCloseTo(66.67, 0);
   });
+
+
+  it("lists all runs across jobs", () => {
+    const job1 = storage.createJob({ name: "job-1", schedule: "*/5 * * * *", command: "echo 1" });
+    const job2 = storage.createJob({ name: "job-2", schedule: "*/5 * * * *", command: "echo 2" });
+
+    const run1 = storage.createRun(job1.id);
+    storage.finishRun(run1.id, { exitCode: 0, stdout: "ok", stderr: "", status: "success" });
+
+    const run2 = storage.createRun(job2.id);
+    storage.finishRun(run2.id, { exitCode: 1, stdout: "", stderr: "err", status: "failure" });
+
+    const allRuns = storage.listAllRuns(10);
+    expect(allRuns.length).toBe(2);
+    expect(allRuns[0].jobName).toBe("job-2"); // Most recent first
+    expect(allRuns[1].jobName).toBe("job-1");
+  });
+
 });

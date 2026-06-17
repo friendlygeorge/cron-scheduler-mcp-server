@@ -162,6 +162,27 @@ export class JobStorage {
     }));
   }
 
+
+  listAllRuns(limit: number = 50): (JobRun & { jobName: string })[] {
+    return (this.db.prepare(`
+      SELECT r.*, j.name as job_name FROM job_runs r
+      JOIN jobs j ON r.job_id = j.id
+      ORDER BY r.started_at DESC LIMIT ?
+    `).all(limit) as any[]).map(r => ({
+      id: r.id,
+      jobId: r.job_id,
+      startedAt: r.started_at,
+      finishedAt: r.finished_at,
+      exitCode: r.exit_code,
+      stdout: r.stdout,
+      stderr: r.stderr,
+      durationMs: r.duration_ms,
+      status: r.status,
+      attempt: r.attempt,
+      jobName: r.job_name,
+    }));
+  }
+
   getRunStats(jobId: string): { totalRuns: number; successRate: number; avgDurationMs: number } {
     const row = this.db.prepare(`
       SELECT

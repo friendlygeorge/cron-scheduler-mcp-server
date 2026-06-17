@@ -135,4 +135,110 @@ export function registerJobTools(server: McpServer, storage: JobStorage, schedul
       };
     }
   );
+
+
+  server.tool(
+    "get_job",
+    "Get detailed information about a specific cron job including configuration, stats, and recent runs",
+    {
+      jobId: z.string().uuid().describe("Job ID to inspect"),
+    },
+    async ({ jobId }) => {
+      const job = storage.getJob(jobId);
+      if (!job) {
+        return {
+          content: [{ type: "text", text: JSON.stringify({ error: "Job not found" }) }],
+          isError: true,
+        };
+      }
+      const status = scheduler.getJobStatus(job);
+      const runs = storage.getRuns(jobId, 5);
+      const stats = storage.getRunStats(jobId);
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify({
+            id: job.id,
+            name: job.name,
+            schedule: job.schedule,
+            command: job.command,
+            enabled: job.enabled,
+            retryCount: job.retryCount,
+            retryDelayMs: job.retryDelayMs,
+            timeoutMs: job.timeoutMs,
+            webhookUrl: job.webhookUrl,
+            nextRun: status.nextRun,
+            isRunning: status.isRunning,
+            stats,
+            recentRuns: runs.map(r => ({
+              startedAt: r.startedAt,
+              status: r.status,
+              exitCode: r.exitCode,
+              durationMs: r.durationMs,
+            })),
+            createdAt: job.createdAt,
+            updatedAt: job.updatedAt,
+          }, null, 2),
+        }],
+      };
+    }
+  );
+
+  server.tool(
+    "update_job",
+    "Modify an existing job's schedule, command, or settings without recreating it",
+    {
+      jobId: z.string().uuid().describe("Job ID to update"),
+      name: z.string().min(1).max(128).optional().describe("New job name"),
+      schedule: z.string().optional().describe("New cron expression or interval"),
+      command: z.string().optional().describe("New shell command"),
+      enabled: z.boolean().optional().describe("Enable or disable the job"),
+      retryCount: z.number().int().min(0).max(10).optional().describe("New retry count"),
+      retryDelayMs: z.number().int().min(0).max(60000).optional().describe("New retry delay in ms"),
+      timeoutMs: z.number().int().min(1000).max(3600000).optional().describe("New timeout in ms"),
+      webhookUrl: z.string().url().optional().describe("New webhook URL (pass empty string to remove)"),
+    },
+    async ({ jobId, ...updates }) => {
+      const job = storage.getJob(jobId);
+      if (!job) {
+        return {
+          content: [{ type: "text", text: JSON.stringify({ error: "Job not found" }) }],
+          isError: true,
+        };
+      }
+      // Filter out undefined values
+      const filtered: Record<string, any> = {};
+      for (const [key, value] of Object.entries(updates)) {
+        if (value !== undefined) filtered[key] = value;
+      }
+      if (Object.keys(filtered).length === 0) {
+        return {
+          content: [{ type: "text", text: JSON.stringify({ error: "No fields to update" }) }],
+          isError: true,
+        };
+      }
+      const updated = storage.updateJob(jobId, filtered);
+      // Reschedule if schedule changed
+      if (filtered.schedule || filtered.enabled !== undefined) {
+        scheduler.unscheduleJob(jobId);
+        if (updated!.enabled) {
+          scheduler.scheduleJob(updated!);
+        }
+      }
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify({
+            id: updated!.id,
+            name: updated!.name,
+            schedule: updated!.schedule,
+            command: updated!.command,
+            enabled: updated!.enabled,
+            message: "Job updated" + (filtered.schedule ? " and rescheduled" : ""),
+          }, null, 2),
+        }],
+      };
+    }
+  );
+
 }

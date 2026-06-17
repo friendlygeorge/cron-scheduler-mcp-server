@@ -124,4 +124,40 @@ export function registerExecutionTools(server: McpServer, storage: JobStorage, s
       };
     }
   );
+
+
+  server.tool(
+    "list_executions",
+    "List recent executions across all jobs with status, duration, and job name",
+    {
+      limit: z.number().int().min(1).max(100).optional().describe("Max executions to return (default: 20)"),
+      status: z.enum(["running", "success", "failure", "timeout", "retry"]).optional().describe("Filter by execution status"),
+    },
+    async ({ limit, status }) => {
+      let runs = storage.listAllRuns(limit ?? 20);
+      if (status) {
+        runs = runs.filter(r => r.status === status);
+      }
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify({
+            count: runs.length,
+            executions: runs.map(r => ({
+              id: r.id,
+              jobId: r.jobId,
+              jobName: r.jobName,
+              startedAt: r.startedAt,
+              finishedAt: r.finishedAt,
+              status: r.status,
+              exitCode: r.exitCode,
+              durationMs: r.durationMs,
+              attempt: r.attempt,
+            })),
+          }, null, 2),
+        }],
+      };
+    }
+  );
+
 }
