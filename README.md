@@ -1,6 +1,9 @@
 # Cron Scheduler MCP Server
 
 [![npm version](https://img.shields.io/npm/v/@supernova123/cron-scheduler-mcp-server)](https://www.npmjs.com/package/@supernova123/cron-scheduler-mcp-server)
+[![npm downloads](https://img.shields.io/npm/dm/@supernova123/cron-scheduler-mcp-server)](https://www.npmjs.com/package/@supernova123/cron-scheduler-mcp-server)
+[![MCP](https://img.shields.io/badge/MCP-compatible-green)](https://modelcontextprotocol.io)
+[![Claude Desktop](https://img.shields.io/badge/Claude%20Desktop-compatible-purple)](https://claude.ai)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Tests](https://img.shields.io/badge/tests-11%20passing-brightgreen)]()
 [![Glama](https://glama.ai/mcp/servers/friendlygeorge/cron-scheduler-mcp-server/badges/card.svg)](https://glama.ai/mcp/servers/friendlygeorge/cron-scheduler-mcp-server)
