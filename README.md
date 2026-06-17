@@ -15,6 +15,21 @@ MCP server for cron job scheduling with SQLite persistence, retry logic, and str
 - **Observability** — success rate, average duration, error history per job
 - **MIT license** — enterprise-friendly
 
+## Why This Over mcp-cron?
+
+| Feature | cron-scheduler-mcp | mcp-cron |
+|---------|-------------------|----------|
+| License | **MIT** | AGPL-3.0 |
+| Storage | SQLite (persistent) | In-memory |
+| Retry logic | ✅ Configurable retries with backoff | ❌ |
+| Observability | ✅ Success rate, avg duration, error trends | ❌ |
+| Systemd integration | ✅ | ❌ |
+| Webhook triggers | ✅ | ❌ |
+| Tool count | 7 | 3 |
+
+mcp-cron is AGPL — fine for personal use, problematic for enterprise agents and commercial deployments. This server uses MIT + SQLite persistence + retry logic for production workloads.
+
+
 ## Quick Start
 
 ```bash
