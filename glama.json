@@ -1,0 +1,32 @@
+{
+  "$schema": "https://glama.ai/schemas/glama.json",
+  "maintainers": [
+    "friendlygeorge"
+  ],
+  "title": "Cron Scheduler MCP Server",
+  "description": "7 tools for AI agent cron job scheduling — create, list, delete, run, monitor, and pause jobs with SQLite persistence, retry logic, and structured observability.",
+  "tags": [
+    "cron",
+    "scheduler",
+    "mcp",
+    "task-scheduling",
+    "observability",
+    "sqlite",
+    "retry-logic",
+    "ai-agents",
+    "typescript",
+    "devops"
+  ],
+  "repository": "https://github.com/friendlygeorge/cron-scheduler-mcp-server",
+  "license": "MIT",
+  "categories": [
+    "developer-tools",
+    "automation"
+  ],
+  "language": "TypeScript",
+  "runtime": "node",
+  "relatedServers": [
+    "https://github.com/friendlygeorge/docker-mcp-server",
+    "https://github.com/friendlygeorge/system-monitoring-mcp-server"
+  ]
+}
