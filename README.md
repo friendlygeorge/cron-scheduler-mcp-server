@@ -6,8 +6,7 @@
 [![Claude Desktop](https://img.shields.io/badge/Claude%20Desktop-compatible-purple)](https://claude.ai)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Tests](https://img.shields.io/badge/tests-11%20passing-brightgreen)]()
-[![Glama](https://glama.ai/mcp/servers/friendlygeorge/cron-scheduler-mcp-server/badges/card.svg)](https://glama.ai/mcp/servers/friendlygeorge/cron-scheduler-mcp-server)
-[![Glama Score](https://glama.ai/mcp/servers/friendlygeorge/cron-scheduler-mcp-server/badges/score.svg)](https://glama.ai/mcp/servers/friendlygeorge/cron-scheduler-mcp-server)
+
 
 MCP server for cron job scheduling with SQLite persistence, retry logic, and structured observability. Let AI agents create, manage, and monitor scheduled tasks through a clean tool interface.
 
