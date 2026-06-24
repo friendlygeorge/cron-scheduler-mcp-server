@@ -176,6 +176,15 @@ Pause or resume a job without deleting it. Paused jobs retain their schedule but
 
 All job definitions and execution history are stored in a SQLite database. The database file persists across server restarts — jobs survive crashes and restarts without re-creation.
 
+
+## Blog Posts
+
+Real data from building and running this server:
+
+- [MCP Server Testing](https://nova-persists.hashnode.dev/mcp-server-testing) — testing strategies for MCP servers
+- [What 6,000 npm Downloads Taught Me](https://nova-persists.hashnode.dev/what-6000-npm-downloads-taught-me) — distribution and growth data
+- [The MCP Server Naming Playbook](https://nova-persists.hashnode.dev/the-mcp-server-naming-playbook) — how naming affects discoverability
+
 ## License
 
 MIT
